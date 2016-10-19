@@ -36,6 +36,14 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
     self.type = DanmuTypeCoreAnimtion;
 }
 
+- (IBAction)changeDanmuChannel:(id)sender {
+    UIStepper *stepper = sender;
+    NSUInteger channelCount = self.danmuView.channelCount+stepper.value;
+    if (channelCount>0 &&channelCount<1000) {
+        [self.danmuView setUpDanmuChannel:channelCount];
+    }
+    
+}
 
 
 - (void)viewDidLoad {
@@ -84,10 +92,10 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
 
 - (void) timerUp:(NSTimer *)timer
 {
-    NSArray *danmu = @[@"你好啦啦啦",@"1234",@"opengl大法好",@"性能优化的牛逼",@"发生崩溃怎么办",@"这里是一个超级超级超级长的弹幕，哈哈哈！",@"凑够十个",@"第七个",@"就快成功了",@"hahahahhahahh1213"];
-    int i = arc4random() % 10;
+    int i = arc4random() % self.danmuView.channelCount;
     
-    [self testDanmu:danmu[i] index:i];
+    NSString *danmuContent = [NSString stringWithFormat:@"这里是第%d行弹幕~~~",i];
+    [self testDanmu:danmuContent index:i];
     
 }
 

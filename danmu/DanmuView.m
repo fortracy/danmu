@@ -173,6 +173,7 @@ static const GLubyte Indices[] = {
 
 - (void) setUpDanmuChannel:(NSUInteger)channelCount
 {
+    self.channelCount = channelCount;
     CGFloat Viewheight = CGRectGetHeight(self.bounds);
     CGFloat channelHeight = Viewheight/channelCount;
     
@@ -308,10 +309,19 @@ static const GLubyte Indices[] = {
         CGPoint endPoint = endValue.CGPointValue;
         
         alabel.frame = CGRectMake(startPoint.x, startPoint.y, CGRectGetWidth(alabel.frame), CGRectGetHeight(alabel.frame));
+        alabel.center = CGPointMake(startPoint.x+CGRectGetWidth(alabel.bounds)/2, startPoint.y);
         [self addSubview:alabel];
         
-        [UIView animateWithDuration:3.0 animations:^{
-            alabel.frame = CGRectMake(endPoint.x-CGRectGetWidth(alabel.frame), endPoint.y, CGRectGetWidth(alabel.frame), CGRectGetHeight(alabel.frame));
+//        [UIView animateWithDuration:3.0 animations:^{
+////            alabel.frame = CGRectMake(endPoint.x-CGRectGetWidth(alabel.frame), endPoint.y, CGRectGetWidth(alabel.frame), CGRectGetHeight(alabel.frame));
+//            alabel.center =  CGPointMake(endPoint.x-CGRectGetWidth(alabel.bounds)/2, endPoint.y);;
+//        } completion:^(BOOL finished) {
+//            [alabel removeFromSuperview];
+//        }];
+        
+        [UIView animateWithDuration:3.0 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+            alabel.center =  CGPointMake(endPoint.x-CGRectGetWidth(alabel.bounds)/2, endPoint.y);;
+            
         } completion:^(BOOL finished) {
             [alabel removeFromSuperview];
         }];
@@ -441,6 +451,7 @@ static const GLubyte Indices[] = {
     glUniform1i(textureUniform, 0);
     glUniformMatrix4fv(gModelUniform, 1, 0,danmu.Model.m);
     
+    //shader 传参数;
     glVertexAttribPointer(positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
     glVertexAttribPointer(colorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *)(sizeof(float)*3));
     glVertexAttribPointer(texCoordSlot, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid *)(sizeof(float)*7));

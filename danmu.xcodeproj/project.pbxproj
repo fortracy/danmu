@@ -15,9 +15,13 @@
 		6B31A3D61D9D3EE50013E647 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B31A3D41D9D3EE50013E647 /* LaunchScreen.storyboard */; };
 		6B32C6E91DA8E45C00941397 /* DanmuFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 6B32C6E71DA8E45C00941397 /* DanmuFragment.glsl */; };
 		6B32C6EA1DA8E45C00941397 /* DanmuVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 6B32C6E81DA8E45C00941397 /* DanmuVertex.glsl */; };
+		6BAA1A921DB6162900C5AC48 /* GLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAA1A911DB6162900C5AC48 /* GLNode.m */; };
+		6BAA1A951DB62A2F00C5AC48 /* GLDanmuSpirite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAA1A941DB62A2F00C5AC48 /* GLDanmuSpirite.m */; };
+		6BAA1A981DB76A2000C5AC48 /* GLDanmuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAA1A971DB76A2000C5AC48 /* GLDanmuScene.m */; };
+		6BAA1A9B1DB770C400C5AC48 /* GLDanmuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAA1A9A1DB770C400C5AC48 /* GLDanmuView.m */; };
+		6BAA1A9E1DB77BA700C5AC48 /* NSAttributedString+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAA1A9D1DB77BA700C5AC48 /* NSAttributedString+Image.m */; };
 		6BB5F0511D9F97FE00D6631E /* DanmuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB5F0501D9F97FE00D6631E /* DanmuView.m */; };
 		6BB5F0541D9F9DC600D6631E /* DanmuSpirite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB5F0531D9F9DC600D6631E /* DanmuSpirite.m */; };
-		6BB5F0571D9FA03F00D6631E /* ShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB5F0561D9FA03F00D6631E /* ShaderManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,12 +37,20 @@
 		6B31A3D71D9D3EE50013E647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B32C6E71DA8E45C00941397 /* DanmuFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DanmuFragment.glsl; sourceTree = "<group>"; };
 		6B32C6E81DA8E45C00941397 /* DanmuVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DanmuVertex.glsl; sourceTree = "<group>"; };
+		6BAA1A901DB6162900C5AC48 /* GLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNode.h; sourceTree = "<group>"; };
+		6BAA1A911DB6162900C5AC48 /* GLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNode.m; sourceTree = "<group>"; };
+		6BAA1A931DB62A2F00C5AC48 /* GLDanmuSpirite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuSpirite.h; sourceTree = "<group>"; };
+		6BAA1A941DB62A2F00C5AC48 /* GLDanmuSpirite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDanmuSpirite.m; sourceTree = "<group>"; };
+		6BAA1A961DB76A2000C5AC48 /* GLDanmuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuScene.h; sourceTree = "<group>"; };
+		6BAA1A971DB76A2000C5AC48 /* GLDanmuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDanmuScene.m; sourceTree = "<group>"; };
+		6BAA1A991DB770C400C5AC48 /* GLDanmuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuView.h; sourceTree = "<group>"; };
+		6BAA1A9A1DB770C400C5AC48 /* GLDanmuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDanmuView.m; sourceTree = "<group>"; };
+		6BAA1A9C1DB77BA700C5AC48 /* NSAttributedString+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Image.h"; sourceTree = "<group>"; };
+		6BAA1A9D1DB77BA700C5AC48 /* NSAttributedString+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Image.m"; sourceTree = "<group>"; };
 		6BB5F04F1D9F97FE00D6631E /* DanmuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanmuView.h; sourceTree = "<group>"; };
 		6BB5F0501D9F97FE00D6631E /* DanmuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DanmuView.m; sourceTree = "<group>"; };
 		6BB5F0521D9F9DC600D6631E /* DanmuSpirite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanmuSpirite.h; sourceTree = "<group>"; };
 		6BB5F0531D9F9DC600D6631E /* DanmuSpirite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DanmuSpirite.m; sourceTree = "<group>"; };
-		6BB5F0551D9FA03F00D6631E /* ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderManager.h; sourceTree = "<group>"; };
-		6BB5F0561D9FA03F00D6631E /* ShaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +98,16 @@
 				6BB5F0501D9F97FE00D6631E /* DanmuView.m */,
 				6BB5F0521D9F9DC600D6631E /* DanmuSpirite.h */,
 				6BB5F0531D9F9DC600D6631E /* DanmuSpirite.m */,
-				6BB5F0551D9FA03F00D6631E /* ShaderManager.h */,
-				6BB5F0561D9FA03F00D6631E /* ShaderManager.m */,
+				6BAA1A901DB6162900C5AC48 /* GLNode.h */,
+				6BAA1A911DB6162900C5AC48 /* GLNode.m */,
+				6BAA1A931DB62A2F00C5AC48 /* GLDanmuSpirite.h */,
+				6BAA1A941DB62A2F00C5AC48 /* GLDanmuSpirite.m */,
+				6BAA1A961DB76A2000C5AC48 /* GLDanmuScene.h */,
+				6BAA1A971DB76A2000C5AC48 /* GLDanmuScene.m */,
+				6BAA1A991DB770C400C5AC48 /* GLDanmuView.h */,
+				6BAA1A9A1DB770C400C5AC48 /* GLDanmuView.m */,
+				6BAA1A9C1DB77BA700C5AC48 /* NSAttributedString+Image.h */,
+				6BAA1A9D1DB77BA700C5AC48 /* NSAttributedString+Image.m */,
 			);
 			path = danmu;
 			sourceTree = "<group>";
@@ -176,10 +196,14 @@
 			files = (
 				6B31A3CE1D9D3EE50013E647 /* ViewController.m in Sources */,
 				6B31A3CB1D9D3EE50013E647 /* AppDelegate.m in Sources */,
+				6BAA1A921DB6162900C5AC48 /* GLNode.m in Sources */,
+				6BAA1A951DB62A2F00C5AC48 /* GLDanmuSpirite.m in Sources */,
 				6BB5F0511D9F97FE00D6631E /* DanmuView.m in Sources */,
+				6BAA1A981DB76A2000C5AC48 /* GLDanmuScene.m in Sources */,
 				6BB5F0541D9F9DC600D6631E /* DanmuSpirite.m in Sources */,
-				6BB5F0571D9FA03F00D6631E /* ShaderManager.m in Sources */,
 				6B31A3C81D9D3EE50013E647 /* main.m in Sources */,
+				6BAA1A9B1DB770C400C5AC48 /* GLDanmuView.m in Sources */,
+				6BAA1A9E1DB77BA700C5AC48 /* NSAttributedString+Image.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

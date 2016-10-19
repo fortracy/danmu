@@ -18,4 +18,6 @@
 
 - (void) update:(BOOL)state;
 
+@property (nonatomic) NSUInteger channelCount;
+
 @end

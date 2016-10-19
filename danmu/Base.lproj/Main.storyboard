@@ -41,14 +41,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8MA-Mq-tTu">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="7Yb-5F-jCk">
+                                <connections>
+                                    <action selector="changeDanmuChannel:" destination="JPP-HJ-6c5" eventType="valueChanged" id="6cb-mt-5s9"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JdP-UC-mhv" firstAttribute="leading" secondItem="VR1-oI-tB1" secondAttribute="leadingMargin" id="1ac-pH-ebK"/>
                             <constraint firstItem="8MA-Mq-tTu" firstAttribute="top" secondItem="s4Q-Z4-vp1" secondAttribute="bottom" constant="29" id="21z-eY-6fR"/>
+                            <constraint firstItem="7Yb-5F-jCk" firstAttribute="centerX" secondItem="VR1-oI-tB1" secondAttribute="centerX" id="TNg-CF-Dmj"/>
                             <constraint firstItem="cNr-e7-39c" firstAttribute="top" secondItem="8MA-Mq-tTu" secondAttribute="bottom" id="WZ5-sM-QYH"/>
                             <constraint firstItem="4kP-dR-qMo" firstAttribute="trailing" secondItem="VR1-oI-tB1" secondAttribute="trailingMargin" id="egs-xi-eBC"/>
                             <constraint firstItem="4kP-dR-qMo" firstAttribute="top" secondItem="s4Q-Z4-vp1" secondAttribute="bottom" id="n0U-Cn-lrY"/>
+                            <constraint firstItem="7Yb-5F-jCk" firstAttribute="top" secondItem="s4Q-Z4-vp1" secondAttribute="bottom" id="nsV-zd-obg"/>
                             <constraint firstItem="8MA-Mq-tTu" firstAttribute="leading" secondItem="VR1-oI-tB1" secondAttribute="leading" id="saO-HK-Hzo"/>
                             <constraint firstAttribute="trailing" secondItem="8MA-Mq-tTu" secondAttribute="trailing" id="t4a-SN-dCG"/>
                             <constraint firstItem="JdP-UC-mhv" firstAttribute="top" secondItem="s4Q-Z4-vp1" secondAttribute="bottom" id="xfA-ks-ax8"/>
@@ -60,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEY-uh-a6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-383.19999999999999" y="-389.95502248875567"/>
+            <point key="canvasLocation" x="-473" y="-493"/>
         </scene>
     </scenes>
 </document>
