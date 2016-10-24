@@ -117,6 +117,8 @@
 
 - (void) setUpTouchable
 {
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DanmuIsTapped:)];
+    [self addGestureRecognizer:tgr];
     
 }
 
@@ -217,6 +219,21 @@
         danmuSpirite.moveVelocity = GLKVector2Make(-50.0, 0.0);
         
         [self.danmuSpiriteArray addObject:danmuSpirite];
+    }
+}
+
+#pragma mark - UIGestureRecognizer
+
+- (void) DanmuIsTapped:(UIGestureRecognizer *)gr
+{
+    CGPoint touchLocation = [gr locationInView:gr.view];
+    //MARK:需要将UIKit和Opengl的坐标原点进行转换;
+    touchLocation = CGPointMake(touchLocation.x, touchLocation.y);
+    for(GLNode *node in self.danmuSpiriteArray){
+       bool contained = CGRectContainsPoint([node boundingBox], touchLocation);
+        if (contained) {
+            
+        }
     }
 }
 
