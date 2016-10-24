@@ -19,7 +19,9 @@
     CADisplayLink *displayLink;
     NSInteger channelCount;
     GLKBaseEffect *effect;
-    NSMutableArray *channelArray;
+    
+    GLuint colorRenderBuffer;
+    GLuint framebuffer;
 }
 
 @property (nonatomic) NSMutableArray *danmuSpiriteArray;
@@ -37,6 +39,40 @@
     // Drawing code
 }
 */
+
+- (instancetype) initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setupLayer];
+        [self setupContext];
+        [self setupRenderBuffer];
+        [self setupFrameBuffer];
+        [self setUpEffect];
+        [self setUpBuffer];
+        [self setupDisplayLink];
+        [self setUpTouchable];
+    }
+    return self;
+}
+
+- (void) dealloc
+{
+    if (colorRenderBuffer) {
+        glDeleteRenderbuffers(1, &colorRenderBuffer);
+    }
+    if (framebuffer) {
+        glDeleteFramebuffers(1, &framebuffer);
+    }
+    if ([EAGLContext currentContext] == glcontext){
+        [EAGLContext setCurrentContext:nil];
+    }
+}
+
+
+- (void) layoutSubviews
+{
+    [super layoutSubviews];
+}
 
 #pragma mark - setup
 
@@ -68,40 +104,53 @@
 - (void) setUpDanmuChannel:(NSUInteger)channelcount
 {
     channelCount = channelcount;
-    CGFloat Viewheight = CGRectGetHeight(self.bounds);
-    CGFloat channelHeight = Viewheight/channelCount;
-    
-    channelArray = [NSMutableArray new];
-    for (NSUInteger index = 0; index<channelCount; index++) {
-        CGFloat x = CGRectGetWidth(self.bounds);
-        CGFloat y = (index+0.5)*channelHeight;
-        
-        CGPoint channelStart = CGPointMake(x, y);
-        CGPoint channelEnd = CGPointMake(0, y);
-        NSValue *startValue = [NSValue valueWithCGPoint:channelStart];
-        NSValue *endValue = [NSValue valueWithCGPoint:channelEnd];
-        
-        NSMutableDictionary * dic = [NSMutableDictionary new];
-        [dic setObject:startValue forKey:@"start"];
-        [dic setObject:endValue forKey:@"end"];
-        
-        [channelArray addObject:dic];
-    }
 }
 
 - (void) setUpEffect
 {
+    effect = [[GLKBaseEffect alloc] init];
     float right = CGRectGetWidth(self.bounds);
     float bottom = CGRectGetHeight(self.bounds);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, right,bottom, 0, -1024, 1024);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, right,0,bottom, -1024, 1024);
     effect.transform.projectionMatrix = projectionMatrix;
 }
 
-#pragma mark - operation
-
-- (void) stop
+- (void) setUpTouchable
 {
     
+}
+
+- (void) setUpBuffer
+{
+    self.danmuSpiriteArray = [NSMutableArray new];
+}
+
+- (void) setupRenderBuffer
+{
+    glGenRenderbuffers(1, &colorRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, colorRenderBuffer);
+    [glcontext renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
+}
+
+- (void) setupFrameBuffer
+{
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+                              GL_RENDERBUFFER, colorRenderBuffer);
+}
+
+
+#pragma mark - operation
+
+- (BOOL) isWork
+{
+    return !displayLink.paused;
+}
+
+- (void) clear
+{
+    [self.danmuSpiriteArray removeAllObjects];
 }
 
 - (void) pause
@@ -121,6 +170,7 @@
 - (void) refresh:(CADisplayLink *)displaylink
 {
     [self update:displayLink.duration];
+    [self display:displayLink.duration];
 }
 
 - (void) update:(float)dt
@@ -136,12 +186,12 @@
 
 - (void) display:(float)dt
 {
-    glClearColor(0, 0.0,0.0, 1.0);
+    glClearColor(1.0,1.0,1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     float width = CGRectGetWidth(self.bounds);
     float height = CGRectGetHeight(self.bounds);
     glViewport(0, 0, width, height);
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     
     for (GLNode *node in self.danmuSpiriteArray) {
@@ -152,17 +202,19 @@
     
 }
 
-#pragma marl - public
+#pragma mark - public
 
 - (void) shootADanmuWithAttributedString:(NSAttributedString *)content index:(NSUInteger)index speed:(CGFloat)speed
 {
     if (content && content.length>0) {
         UIImage *contentImage = [content contentImage];
-        NSDictionary *channelDic = channelArray[index];
-        NSValue *startValue = [channelDic objectForKey:@"start"];
         GLDanmuSpirite *danmuSpirite = [[GLDanmuSpirite alloc] initWithImage:contentImage Effect:effect];
-        danmuSpirite.position = GLKVector2Make(startValue.CGPointValue.x,startValue.CGPointValue.y);
-        danmuSpirite.moveVelocity = GLKVector2Make(-speed, 0.0);
+        CGFloat Viewheight = CGRectGetHeight(self.bounds);
+        CGFloat channelHeight = Viewheight/channelCount;
+        CGFloat x = CGRectGetWidth(self.bounds)+danmuSpirite.contentsize.width/2;
+        CGFloat y = (index+0.5)*channelHeight;
+        danmuSpirite.position = GLKVector2Make(x,y);
+        danmuSpirite.moveVelocity = GLKVector2Make(-50.0, 0.0);
         
         [self.danmuSpiriteArray addObject:danmuSpirite];
     }

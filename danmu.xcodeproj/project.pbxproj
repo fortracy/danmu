@@ -106,8 +106,8 @@
 				6BAA1A971DB76A2000C5AC48 /* GLDanmuScene.m */,
 				6BAA1A991DB770C400C5AC48 /* GLDanmuView.h */,
 				6BAA1A9A1DB770C400C5AC48 /* GLDanmuView.m */,
-				6BAA1A9C1DB77BA700C5AC48 /* NSAttributedString+Image.h */,
 				6BAA1A9D1DB77BA700C5AC48 /* NSAttributedString+Image.m */,
+				6BAA1A9C1DB77BA700C5AC48 /* NSAttributedString+Image.h */,
 			);
 			path = danmu;
 			sourceTree = "<group>";
@@ -324,7 +324,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2DF7TAE5CB;
 				INFOPLIST_FILE = danmu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yy.mobile.developer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -337,7 +337,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2DF7TAE5CB;
 				INFOPLIST_FILE = danmu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yy.mobile.developer;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -8,16 +8,18 @@
 
 #import "ViewController.h"
 #import "DanmuView.h"
+#import "GLDanmuView.h"
 
 
 typedef NS_ENUM(NSUInteger,DanmuType) {
+    DanmuTypeOpengl,
     DanmuTypeCoreAnimtion,
-    DanmuTypeOpengl
+    
 };
 
 @interface ViewController ()
 
-@property (nonatomic) DanmuView *danmuView;
+@property (nonatomic) GLDanmuView *danmuView;
 
 @property (nonatomic) DanmuType type;
 
@@ -48,17 +50,18 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.danmuView = [[DanmuView alloc] initWithFrame:self.view.bounds];
+    self.danmuView = [[GLDanmuView alloc] initWithFrame:self.view.bounds];
     [self.danmuView setUpDanmuChannel:10];
     [self.backView addSubview:self.danmuView];
+    [self.danmuView play];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [self setupTimer];
-   // [self testDanmu:@"你好你好" index:4];
+   // [self setupTimer];
+    [self testDanmu:@"你好你好" index:4];
 }
 
 - (void) testDanmu:(NSString *)content index:(NSUInteger)index
@@ -69,10 +72,10 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
     [mutableattributedString addAttribute:NSFontAttributeName value:boldFont range:NSMakeRange(0,mutableattributedString.string.length)];
     
     if (self.type == DanmuTypeOpengl) {
-        [self.danmuView shootADanmuWithAttributedString:mutableattributedString index:index speed:2.0];
+        [self.danmuView shootADanmuWithAttributedString:mutableattributedString index:index speed:50.0];
     }
     if (self.type == DanmuTypeCoreAnimtion) {
-        [self.danmuView shootAAnimationWithAttributedString:mutableattributedString index:index speed:2.0];
+       // [self.danmuView shootAAnimationWithAttributedString:mutableattributedString index:index speed:2.0];
     }
 
 }

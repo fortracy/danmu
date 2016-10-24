@@ -14,6 +14,7 @@
 {
     if (self = [super init]) {
         self.children = [NSMutableArray new];
+        self.scale = 1.0;
     }
     return self;
 }

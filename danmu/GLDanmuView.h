@@ -16,15 +16,28 @@
 
 @end
 
+@protocol  GLDanmuViewDelegate <NSObject>
+
+- (void) danmuSpiriteIsTouched:(NSIndexPath*)indexPath;
+
+@end
+
 
 
 @interface GLDanmuView : UIView
 
-- (void) stop;
+- (void) clear;
 - (void) pause;
 - (void) play;
+- (BOOL) isWork;
 
 - (void) shootADanmuWithAttributedString:(NSAttributedString *)content index:(NSUInteger)index speed:(CGFloat)speed;
 
+- (void) setUpDanmuChannel:(NSUInteger)channelcount;
+@property (nonatomic) NSUInteger channelCount;
+
+
+@property (nonatomic,weak) id<GLDanmuViewDataSource> dataSource;
+@property (nonatomic,weak) id<GLDanmuViewDelegate> delegate;
 
 @end
