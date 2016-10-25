@@ -17,7 +17,7 @@
     CAEAGLLayer *eaglLayer;
     EAGLContext *glcontext;
     CADisplayLink *displayLink;
-    NSInteger channelCount;
+    NSUInteger _channelCount;
     GLKBaseEffect *effect;
     
     GLuint colorRenderBuffer;
@@ -103,7 +103,7 @@
 
 - (void) setUpDanmuChannel:(NSUInteger)channelcount
 {
-    channelCount = channelcount;
+    _channelCount = channelcount;
 }
 
 - (void) setUpEffect
@@ -178,7 +178,7 @@
 - (void) update:(float)dt
 {
     NSMutableArray *tempDanmuSpirites = (NSMutableArray *)[NSArray arrayWithArray:self.danmuSpiriteArray];
-    for (GLNode * node in tempDanmuSpirites) {
+    for (GLDanmuSpirite * node in tempDanmuSpirites) {
         [node update:dt];
         if (CGRectIsNull(CGRectIntersection(self.bounds, [node boundingBox]))) {
             [self.danmuSpiriteArray removeObject:node];
@@ -196,6 +196,8 @@
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     
+    
+    
     for (GLNode *node in self.danmuSpiriteArray) {
         [node renderWithModelViewMatrix:GLKMatrix4Identity];
     }
@@ -212,11 +214,11 @@
         UIImage *contentImage = [content contentImage];
         GLDanmuSpirite *danmuSpirite = [[GLDanmuSpirite alloc] initWithImage:contentImage Effect:effect];
         CGFloat Viewheight = CGRectGetHeight(self.bounds);
-        CGFloat channelHeight = Viewheight/channelCount;
+        CGFloat channelHeight = Viewheight/_channelCount;
         CGFloat x = CGRectGetWidth(self.bounds)+danmuSpirite.contentsize.width/2;
         CGFloat y = (index+0.5)*channelHeight;
         danmuSpirite.position = GLKVector2Make(x,y);
-        danmuSpirite.moveVelocity = GLKVector2Make(-50.0, 0.0);
+        danmuSpirite.moveVelocity = GLKVector2Make(-150.0, 0.0);
         
         [self.danmuSpiriteArray addObject:danmuSpirite];
     }
@@ -232,6 +234,7 @@
     for(GLNode *node in self.danmuSpiriteArray){
        bool contained = CGRectContainsPoint([node boundingBox], touchLocation);
         if (contained) {
+            //TODO:事件传递
             
         }
     }

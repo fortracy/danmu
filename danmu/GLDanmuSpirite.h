@@ -12,4 +12,5 @@
 
 - (instancetype) initWithImage:(UIImage *)image Effect:(GLKBaseEffect *)effect;
 
+
 @end

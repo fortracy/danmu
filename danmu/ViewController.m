@@ -60,8 +60,8 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
 
 - (void) viewDidAppear:(BOOL)animated
 {
-   // [self setupTimer];
-    [self testDanmu:@"你好你好" index:4];
+    [self setupTimer];
+   // [self testDanmu:@"你好你好" index:4];
 }
 
 - (void) testDanmu:(NSString *)content index:(NSUInteger)index
@@ -89,7 +89,7 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
 
 - (void) setupTimer
 {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerUp:) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerUp:) userInfo:nil repeats:YES];
     [timer fire];
 }
 

@@ -8,6 +8,7 @@
 #import "GLDanmuSpirite.h"
 #import <OpenGLES/ES2/glext.h>
 #import <OpenGLES/ES3/glext.h>
+#import "NSAttributedString+Image.h"
 
 typedef struct {
     float Position[3];
@@ -30,6 +31,8 @@ const GLubyte Indices[] = {
 
 
 
+
+
 @interface GLDanmuSpirite ()
 {
     GLuint VBO;
@@ -47,7 +50,6 @@ const GLubyte Indices[] = {
 {
     if (self = [super init]) {
         self.effect = effect;
-        
         NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithBool:YES],
                                   GLKTextureLoaderOriginBottomLeft,
@@ -65,6 +67,11 @@ const GLubyte Indices[] = {
 }
 
 - (void) dealloc
+{
+    [self deleteBuffer];
+}
+
+- (void) deleteBuffer
 {
     if (VAO) {
         glDeleteBuffers(1, &VAO);
@@ -101,9 +108,10 @@ const GLubyte Indices[] = {
 - (void) renderWithModelViewMatrix:(GLKMatrix4)modelViewMatrix
 {
     [super renderWithModelViewMatrix:modelViewMatrix];
-    
+
     self.effect.texture2d0.enabled = GL_TRUE;
     self.effect.texture2d0.name = self.textureInfo.name;
+    self.effect.constantColor = GLKVector4Make(0.3, 0.4, 1.0, 1.0);
 
     self.effect.transform.modelviewMatrix = GLKMatrix4Multiply(modelViewMatrix, [self modelMatrix:YES]);
     self.effect.transform.modelviewMatrix = GLKMatrix4Scale(self.effect.transform.modelviewMatrix, self.contentsize.width/2, self.contentsize.height/2, 0.0);
@@ -111,6 +119,8 @@ const GLubyte Indices[] = {
     [self.effect prepareToDraw];
     glBindVertexArrayOES(VAO);
     glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
+    //MARK:此处如果不进行解绑，在创建新的弹幕精灵进行顶点数组绑定时会产生崩溃;
+    glBindVertexArrayOES(0);
     
 }
 
