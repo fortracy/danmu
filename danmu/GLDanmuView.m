@@ -18,14 +18,17 @@
     EAGLContext *glcontext;
     CADisplayLink *displayLink;
     NSUInteger _channelCount;
+    CGFloat channelHeight;
+    UIColor *defaultColor;
+    UIFont *defaultFont;
+    CGFloat defaultSpeed;
     GLKBaseEffect *effect;
     
     GLuint colorRenderBuffer;
     GLuint framebuffer;
 }
 
-@property (nonatomic) NSMutableArray *danmuSpiriteArray;
-
+@property (nonatomic) NSMutableArray *GLNodeArray;
 
 @end
 
@@ -43,14 +46,7 @@
 - (instancetype) initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        [self setupLayer];
-        [self setupContext];
-        [self setupRenderBuffer];
-        [self setupFrameBuffer];
-        [self setUpEffect];
-        [self setUpBuffer];
-        [self setupDisplayLink];
-        [self setUpTouchable];
+        [self setup];
     }
     return self;
 }
@@ -81,6 +77,18 @@
     return [CAEAGLLayer class];
 }
 
+- (void) setup
+{
+    [self setupLayer];
+    [self setupContext];
+    [self setupRenderBuffer];
+    [self setupFrameBuffer];
+    [self setUpEffect];
+    [self setUpBuffer];
+    [self setupDisplayLink];
+    [self setUpTouchable];
+}
+
 - (void) setupLayer
 {
     eaglLayer = (CAEAGLLayer *)self.layer;
@@ -101,16 +109,12 @@
     displayLink.paused = YES;
 }
 
-- (void) setUpDanmuChannel:(NSUInteger)channelcount
-{
-    _channelCount = channelcount;
-}
-
 - (void) setUpEffect
 {
     effect = [[GLKBaseEffect alloc] init];
     float right = CGRectGetWidth(self.bounds);
     float bottom = CGRectGetHeight(self.bounds);
+    //MARK:设置投影矩阵
     GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, right,0,bottom, -1024, 1024);
     effect.transform.projectionMatrix = projectionMatrix;
 }
@@ -124,7 +128,7 @@
 
 - (void) setUpBuffer
 {
-    self.danmuSpiriteArray = [NSMutableArray new];
+    self.GLNodeArray = [NSMutableArray new];
 }
 
 - (void) setupRenderBuffer
@@ -145,14 +149,14 @@
 
 #pragma mark - operation
 
-- (BOOL) isWork
+- (BOOL) isPlay
 {
     return !displayLink.paused;
 }
 
 - (void) clear
 {
-    [self.danmuSpiriteArray removeAllObjects];
+    [self.GLNodeArray removeAllObjects];
 }
 
 - (void) pause
@@ -166,6 +170,34 @@
 {
     if (displayLink.paused) {
         displayLink.paused = NO;
+        [self configDanmuView];
+    }
+}
+
+- (void) restart
+{
+    [self pause];
+    [self clear];
+    [self play];
+}
+
+- (void) configDanmuView
+{
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(channelCountInDanmuView:)]) {
+        _channelCount = [self.dataSource channelCountInDanmuView:self];
+        CGFloat Viewheight = CGRectGetHeight(self.bounds);
+        if (_channelCount) {
+            channelHeight = Viewheight/_channelCount;
+        }
+    }
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(defaultColorInDanmuView:)]) {
+        defaultColor = [self.dataSource defaultColorInDanmuView:self];
+    }
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(defaultFontIndanmuView:)]) {
+        defaultFont = [self.dataSource defaultFontIndanmuView:self];
+    }
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(defaultSpeedIndanmuView:)]) {
+        defaultSpeed = [self.dataSource defaultSpeedIndanmuView:self];
     }
 }
 
@@ -177,11 +209,14 @@
 
 - (void) update:(float)dt
 {
-    NSMutableArray *tempDanmuSpirites = (NSMutableArray *)[NSArray arrayWithArray:self.danmuSpiriteArray];
-    for (GLDanmuSpirite * node in tempDanmuSpirites) {
+    NSMutableArray *tempDanmuSpirites = (NSMutableArray *)[NSArray arrayWithArray:self.GLNodeArray];
+    for (GLNode * node in tempDanmuSpirites) {
         [node update:dt];
         if (CGRectIsNull(CGRectIntersection(self.bounds, [node boundingBox]))) {
-            [self.danmuSpiriteArray removeObject:node];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(danmuView:didEndDisplayDanmuSpirite:channelIndex:)]) {
+                [self.delegate danmuView:self didEndDisplayDanmuSpirite:node channelIndex:[self indexPathForNode:node]];
+            }
+            [self.GLNodeArray removeObject:node];
         }
     }
 }
@@ -196,9 +231,7 @@
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
     
-    
-    
-    for (GLNode *node in self.danmuSpiriteArray) {
+    for (GLNode *node in self.GLNodeArray) {
         [node renderWithModelViewMatrix:GLKMatrix4Identity];
     }
     [glcontext presentRenderbuffer:GL_RENDERBUFFER];
@@ -210,18 +243,42 @@
 
 - (void) shootADanmuWithAttributedString:(NSAttributedString *)content index:(NSUInteger)index speed:(CGFloat)speed
 {
-    if (content && content.length>0) {
+    if (content && content.length>0 && [self isPlay] && index<_channelCount && _channelCount && speed) {
         UIImage *contentImage = [content contentImage];
         GLDanmuSpirite *danmuSpirite = [[GLDanmuSpirite alloc] initWithImage:contentImage Effect:effect];
-        CGFloat Viewheight = CGRectGetHeight(self.bounds);
-        CGFloat channelHeight = Viewheight/_channelCount;
         CGFloat x = CGRectGetWidth(self.bounds)+danmuSpirite.contentsize.width/2;
         CGFloat y = (index+0.5)*channelHeight;
         danmuSpirite.position = GLKVector2Make(x,y);
-        danmuSpirite.moveVelocity = GLKVector2Make(-150.0, 0.0);
+        danmuSpirite.moveVelocity = GLKVector2Make(speed, 0.0);
         
-        [self.danmuSpiriteArray addObject:danmuSpirite];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(danmuView:willDisplayDanmuSpirite:channelIndex:)]) {
+            [self.delegate danmuView:self willDisplayDanmuSpirite:danmuSpirite channelIndex:[self indexPathForNode:danmuSpirite]];
+        }
+        [self.GLNodeArray addObject:danmuSpirite];
     }
+}
+- (void) shootADanmuWithString:(NSString *)content index:(NSUInteger)index
+{
+    if (defaultFont && defaultColor) {
+        NSMutableAttributedString *mutableattributedString = [[NSMutableAttributedString alloc] initWithString:content];
+        [mutableattributedString addAttribute:NSForegroundColorAttributeName value:defaultColor range:NSMakeRange(0, mutableattributedString.string.length)];
+        [mutableattributedString addAttribute:NSFontAttributeName value:defaultFont range:NSMakeRange(0,mutableattributedString.string.length)];
+        [self shootADanmuWithAttributedString:mutableattributedString index:index speed:defaultSpeed];
+    }
+}
+
+- (NSIndexPath *)indexPathForPoint:(CGPoint)point
+{
+    NSIndexPath *indexPath = nil;
+    indexPath = [[NSIndexPath alloc] initWithIndex:ceilf(point.y/channelHeight)-1];
+    return indexPath;
+}
+
+- (NSIndexPath *)indexPathForNode:(GLNode *)node
+{
+    CGPoint nodePoint  = CGPointMake(node.position.x, node.position.y);
+    return [self indexPathForPoint:nodePoint];
 }
 
 #pragma mark - UIGestureRecognizer
@@ -231,11 +288,10 @@
     CGPoint touchLocation = [gr locationInView:gr.view];
     //MARK:需要将UIKit和Opengl的坐标原点进行转换;
     touchLocation = CGPointMake(touchLocation.x, touchLocation.y);
-    for(GLNode *node in self.danmuSpiriteArray){
+    for(GLNode *node in self.GLNodeArray){
        bool contained = CGRectContainsPoint([node boundingBox], touchLocation);
         if (contained) {
             //TODO:事件传递
-            
         }
     }
 }

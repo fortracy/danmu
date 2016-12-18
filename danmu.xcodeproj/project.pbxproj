@@ -43,7 +43,7 @@
 		6BAA1A941DB62A2F00C5AC48 /* GLDanmuSpirite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDanmuSpirite.m; sourceTree = "<group>"; };
 		6BAA1A961DB76A2000C5AC48 /* GLDanmuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuScene.h; sourceTree = "<group>"; };
 		6BAA1A971DB76A2000C5AC48 /* GLDanmuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDanmuScene.m; sourceTree = "<group>"; };
-		6BAA1A991DB770C400C5AC48 /* GLDanmuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuView.h; sourceTree = "<group>"; };
+		6BAA1A991DB770C400C5AC48 /* GLDanmuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuView.h; sourceTree = "<group>"; tabWidth = 4; };
 		6BAA1A9A1DB770C400C5AC48 /* GLDanmuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDanmuView.m; sourceTree = "<group>"; };
 		6BAA1A9C1DB77BA700C5AC48 /* NSAttributedString+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Image.h"; sourceTree = "<group>"; };
 		6BAA1A9D1DB77BA700C5AC48 /* NSAttributedString+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Image.m"; sourceTree = "<group>"; };

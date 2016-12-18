@@ -16,6 +16,7 @@ typedef struct {
     float TexCoord[2];
 }Vertex;
 
+//顶点信息
 static const Vertex Vertices[] = {
     {{1.0, 0.0, 0.0}, {1, 1, 1, 1}, {1, 1}},
     {{1.0, 1.0, 0.0}, {1, 1, 1, 1}, {1, 0}},
@@ -24,14 +25,10 @@ static const Vertex Vertices[] = {
 };
 
 const GLubyte Indices[] = {
-    // Front
+    //两个三角形，六个顶点,依次绘制
     0, 1, 2,
     2, 3, 0,
 };
-
-
-
-
 
 @interface GLDanmuSpirite ()
 {
@@ -97,8 +94,10 @@ const GLubyte Indices[] = {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
     
+    //position
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
+    //texCoord
     glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, TexCoord));
     
@@ -112,12 +111,14 @@ const GLubyte Indices[] = {
     self.effect.texture2d0.enabled = GL_TRUE;
     self.effect.texture2d0.name = self.textureInfo.name;
     self.effect.constantColor = GLKVector4Make(0.3, 0.4, 1.0, 1.0);
-
+    
+    //设置Model矩阵
     self.effect.transform.modelviewMatrix = GLKMatrix4Multiply(modelViewMatrix, [self modelMatrix:YES]);
     self.effect.transform.modelviewMatrix = GLKMatrix4Scale(self.effect.transform.modelviewMatrix, self.contentsize.width/2, self.contentsize.height/2, 0.0);
 
     [self.effect prepareToDraw];
     glBindVertexArrayOES(VAO);
+    //此处不知道为何要画六个点
     glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
     //MARK:此处如果不进行解绑，在创建新的弹幕精灵进行顶点数组绑定时会产生崩溃;
     glBindVertexArrayOES(0);

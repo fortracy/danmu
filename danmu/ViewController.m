@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
     
 };
 
-@interface ViewController ()
+@interface ViewController ()<GLDanmuViewDataSource,GLDanmuViewDelegate>
 
 @property (nonatomic) GLDanmuView *danmuView;
 
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
     UIStepper *stepper = sender;
     NSUInteger channelCount = self.danmuView.channelCount+stepper.value;
     if (channelCount>0 &&channelCount<1000) {
-        [self.danmuView setUpDanmuChannel:channelCount];
+      //  [self.danmuView setUpDanmuChannel:channelCount];
     }
     
 }
@@ -51,7 +51,8 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.danmuView = [[GLDanmuView alloc] initWithFrame:self.view.bounds];
-    [self.danmuView setUpDanmuChannel:10];
+    self.danmuView.dataSource = self;
+    self.danmuView.delegate = self;
     [self.backView addSubview:self.danmuView];
     [self.danmuView play];
     
@@ -61,7 +62,6 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
 - (void) viewDidAppear:(BOOL)animated
 {
     [self setupTimer];
-   // [self testDanmu:@"你好你好" index:4];
 }
 
 - (void) testDanmu:(NSString *)content index:(NSUInteger)index
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
     [mutableattributedString addAttribute:NSFontAttributeName value:boldFont range:NSMakeRange(0,mutableattributedString.string.length)];
     
     if (self.type == DanmuTypeOpengl) {
-        [self.danmuView shootADanmuWithAttributedString:mutableattributedString index:index speed:50.0];
+        [self.danmuView shootADanmuWithAttributedString:mutableattributedString index:index speed:-100.0];
     }
     if (self.type == DanmuTypeCoreAnimtion) {
        // [self.danmuView shootAAnimationWithAttributedString:mutableattributedString index:index speed:2.0];
@@ -89,7 +89,7 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
 
 - (void) setupTimer
 {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerUp:) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerUp:) userInfo:nil repeats:NO];
     [timer fire];
 }
 
@@ -100,6 +100,47 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
     NSString *danmuContent = [NSString stringWithFormat:@"这里是第%d行弹幕~~~",i];
     [self testDanmu:danmuContent index:i];
     
+}
+
+#pragma mark - GLDanmuViewDataSource
+
+- (NSUInteger) channelCountInDanmuView:(GLDanmuView *)danmuView
+{
+    return 10;
+}
+
+- (UIColor  *) defaultColorInDanmuView:(GLDanmuView *)danmuView
+{
+    return [UIColor yellowColor];
+}
+
+- (UIFont *) defaultFontIndanmuView:(GLDanmuView *)danmuView
+{
+    return [UIFont boldSystemFontOfSize:12.0];
+;
+}
+
+- (CGFloat) defaultSpeedIndanmuView:(GLDanmuView *)danmuView
+{
+    return -30.0;
+}
+
+#pragma mark - GLDanmuViewDelegate
+
+- (void) danmuSpiriteIsTouched:(GLNode*)danmuSpirite
+{
+    
+}
+
+- (void) danmuView:(GLDanmuView *)danmuView willDisplayDanmuSpirite:(GLNode *)danmuSpirite channelIndex:(NSIndexPath *)indexPath
+{
+    NSLog(@"current row is %ld",[indexPath indexAtPosition:0]);
+    
+}
+
+- (void) danmuView:(GLDanmuView *)danmuView didEndDisplayDanmuSpirite:(GLNode *)danmuSpirite channelIndex:(NSIndexPath *)indexPath
+{
+    NSLog(@"current row is %ld",[indexPath indexAtPosition:0]);
 }
 
 
