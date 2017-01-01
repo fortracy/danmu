@@ -87,6 +87,7 @@
     [self setUpBuffer];
     [self setupDisplayLink];
     [self setUpTouchable];
+    [self getMaxTextureCount];
 }
 
 - (void) setupLayer
@@ -296,6 +297,15 @@
     }
 }
 
+- (void) getMaxTextureCount
+{
+    GLint MaxFragmentTextureUnits = 0;
+    glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &MaxFragmentTextureUnits);
+    GLint MaxVertexTextureUnits = 0;
+    glGetIntegerv(GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS, &MaxVertexTextureUnits);
+    GLint MaxBothTextureUnits = 0;
+    glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &MaxBothTextureUnits);
+}
 
 
 @end

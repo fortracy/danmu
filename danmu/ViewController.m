@@ -143,6 +143,4 @@ typedef NS_ENUM(NSUInteger,DanmuType) {
     NSLog(@"current row is %ld",[indexPath indexAtPosition:0]);
 }
 
-
-
 @end
