@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+@class GLDanmuView,GLNode;
 @protocol GLDanmuViewDataSource <NSObject>
 
 - (NSUInteger) channelCountInDanmuView:(GLDanmuView *)danmuView;
