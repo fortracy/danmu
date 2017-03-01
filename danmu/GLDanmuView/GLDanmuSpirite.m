@@ -63,6 +63,11 @@ const GLubyte Indices[] = {
     return self;
 }
 
+- (instancetype) init
+{
+    return [self initWithImage:nil Effect:nil];
+}
+
 - (void) dealloc
 {
     [self deleteBuffer];

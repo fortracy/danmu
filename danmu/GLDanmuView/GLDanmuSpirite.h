@@ -10,6 +10,6 @@
 
 @interface GLDanmuSpirite : GLNode
 
-- (instancetype) initWithImage:(UIImage *)image Effect:(GLKBaseEffect *)effect;
+- (instancetype) initWithImage:(UIImage *)image Effect:(GLKBaseEffect *)effect NS_DESIGNATED_INITIALIZER;
 
 @end

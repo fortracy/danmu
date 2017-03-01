@@ -7,33 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLDanmuProtocol.h"
 
 @class GLDanmuView;
 @class GLNode;
-
-@protocol GLDanmuViewDataSource <NSObject>
-
-- (NSUInteger) channelCountInDanmuView:(GLDanmuView *)danmuView;
-
-- (UIColor  *) defaultColorInDanmuView:(GLDanmuView *)danmuView;
-
-- (UIFont *) defaultFontIndanmuView:(GLDanmuView *)danmuView;
-
-- (CGFloat) defaultSpeedIndanmuView:(GLDanmuView *)danmuView;
-
-@end
-
-@protocol  GLDanmuViewDelegate <NSObject>
-
-- (void) danmuSpiriteIsTouched:(GLNode*)danmuSpirite;
-
-- (void) danmuView:(GLDanmuView *)danmuView willDisplayDanmuSpirite:(GLNode *)danmuSpirite channelIndex:(NSIndexPath *)indexPath;
-
-- (void) danmuView:(GLDanmuView *)danmuView didEndDisplayDanmuSpirite:(GLNode *)danmuSpirite channelIndex:(NSIndexPath *)indexPath;
-
-@end
-
-
 
 @interface GLDanmuView : UIView
 

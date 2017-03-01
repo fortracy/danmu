@@ -35,6 +35,7 @@
 		6B31A3D21D9D3EE50013E647 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B31A3D51D9D3EE50013E647 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B31A3D71D9D3EE50013E647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B664E5B1E66E8EB00001589 /* GLDanmuProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuProtocol.h; sourceTree = "<group>"; };
 		6BAA1A9C1DB77BA700C5AC48 /* NSAttributedString+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Image.h"; sourceTree = "<group>"; };
 		6BAA1A9D1DB77BA700C5AC48 /* NSAttributedString+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Image.m"; sourceTree = "<group>"; };
 		6BCA038B1E19345E0052DBD0 /* GLDanmuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuScene.h; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 				6BCA03901E19345E0052DBD0 /* GLDanmuView.m */,
 				6BCA03911E19345E0052DBD0 /* GLNode.h */,
 				6BCA03921E19345E0052DBD0 /* GLNode.m */,
+				6B664E5B1E66E8EB00001589 /* GLDanmuProtocol.h */,
 			);
 			path = GLDanmuView;
 			sourceTree = "<group>";
@@ -127,9 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				6BCA03981E1934660052DBD0 /* DanmuFragment.glsl */,
+				6BCA039B1E1934660052DBD0 /* DanmuVertex.glsl */,
 				6BCA03991E1934660052DBD0 /* DanmuSpirite.h */,
 				6BCA039A1E1934660052DBD0 /* DanmuSpirite.m */,
-				6BCA039B1E1934660052DBD0 /* DanmuVertex.glsl */,
 				6BCA039C1E1934660052DBD0 /* DanmuView.h */,
 				6BCA039D1E1934660052DBD0 /* DanmuView.m */,
 			);

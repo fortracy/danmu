@@ -43,13 +43,26 @@
 }
 */
 
+#pragma mark - init
+
 - (instancetype) initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         [self setup];
     }
+    
     return self;
 }
+
+- (instancetype) initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setup];
+    }
+    
+    return self;
+}
+
 
 - (void) dealloc
 {
@@ -71,6 +84,7 @@
 }
 
 #pragma mark - setup
+
 
 + (Class) layerClass
 {

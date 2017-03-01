@@ -10,6 +10,6 @@
 
 @interface GLDanmuScene : GLNode
 
-- (instancetype) initWithEffect:(GLKBaseEffect *)effect;
+- (instancetype) initWithEffect:(GLKBaseEffect *)effect NS_DESIGNATED_INITIALIZER;
 
 @end

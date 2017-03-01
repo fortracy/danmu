@@ -19,11 +19,20 @@
 
 - (instancetype) initWithEffect:(GLKBaseEffect *)effect
 {
+    if (!effect) {
+        return nil;
+    }
+    
     if (self = [super init]) {
         self.effect = effect;
     }
     
     return self;
+}
+
+- (instancetype) init
+{
+    return [self initWithEffect:nil];
 }
 
 @end
