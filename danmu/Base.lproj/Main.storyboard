@@ -1,12 +1,88 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JPP-HJ-6c5">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="560-Xh-31e">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Example View Controller-->
+        <scene sceneID="4tN-fb-LW1">
+            <objects>
+                <viewController id="560-Xh-31e" customClass="ExampleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S6N-sp-qHX"/>
+                        <viewControllerLayoutGuide type="bottom" id="wJn-qu-7Hp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P1z-bT-rD7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vx-MU-Jga" customClass="GLDanmuView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="622"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyV-i9-k9C">
+                                <rect key="frame" x="156" y="637" width="62" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6mf-q1-sTN"/>
+                                    <constraint firstAttribute="width" constant="62" id="7f4-Kx-vPz"/>
+                                </constraints>
+                                <state key="normal" title="暂停弹幕"/>
+                                <connections>
+                                    <action selector="pauseDanmu:" destination="560-Xh-31e" eventType="touchUpInside" id="1gr-J8-ThN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="341-75-rDa">
+                                <rect key="frame" x="305" y="637" width="62" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="XE5-Cg-tnG"/>
+                                    <constraint firstAttribute="width" constant="62" id="h8H-pI-zD1"/>
+                                </constraints>
+                                <state key="normal" title="开始弹幕"/>
+                                <connections>
+                                    <action selector="startDanmu:" destination="560-Xh-31e" eventType="touchUpInside" id="Aiv-oD-etc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVA-oa-VYb">
+                                <rect key="frame" x="8" y="637" width="62" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="r3w-99-v6g"/>
+                                    <constraint firstAttribute="height" constant="30" id="zzT-nX-vRR"/>
+                                </constraints>
+                                <state key="normal" title="清除弹幕"/>
+                                <connections>
+                                    <action selector="clearDanmu:" destination="560-Xh-31e" eventType="touchUpInside" id="WLF-3T-33v"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wJn-qu-7Hp" firstAttribute="top" secondItem="IyV-i9-k9C" secondAttribute="bottom" id="KEf-HL-TG6"/>
+                            <constraint firstItem="IyV-i9-k9C" firstAttribute="centerX" secondItem="P1z-bT-rD7" secondAttribute="centerX" id="MpM-YK-nRG"/>
+                            <constraint firstAttribute="trailing" secondItem="5vx-MU-Jga" secondAttribute="trailing" id="OHd-Dx-x9x"/>
+                            <constraint firstItem="IyV-i9-k9C" firstAttribute="top" secondItem="5vx-MU-Jga" secondAttribute="bottom" constant="15" id="YT1-oB-VUT"/>
+                            <constraint firstItem="wJn-qu-7Hp" firstAttribute="top" secondItem="341-75-rDa" secondAttribute="bottom" id="Yrj-KQ-7wr"/>
+                            <constraint firstItem="5vx-MU-Jga" firstAttribute="top" secondItem="P1z-bT-rD7" secondAttribute="top" id="d1P-rU-L0b"/>
+                            <constraint firstItem="wJn-qu-7Hp" firstAttribute="top" secondItem="5vx-MU-Jga" secondAttribute="bottom" constant="45" id="ePL-8L-fXU"/>
+                            <constraint firstAttribute="trailing" secondItem="341-75-rDa" secondAttribute="trailing" constant="8" id="fXy-2e-3HA"/>
+                            <constraint firstItem="rVA-oa-VYb" firstAttribute="leading" secondItem="P1z-bT-rD7" secondAttribute="leading" constant="8" id="p6F-B8-GyV"/>
+                            <constraint firstItem="5vx-MU-Jga" firstAttribute="leading" secondItem="P1z-bT-rD7" secondAttribute="leading" id="r8I-0v-J7g"/>
+                            <constraint firstItem="wJn-qu-7Hp" firstAttribute="top" secondItem="rVA-oa-VYb" secondAttribute="bottom" id="seO-JF-5Ws"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="danmuView" destination="5vx-MU-Jga" id="HDw-Hh-Sm1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y85-Wl-NYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-658.39999999999998" y="-1132.0839580209895"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="jqu-o4-PfN">
             <objects>
@@ -20,6 +96,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdP-UC-mhv">
+                                <rect key="frame" x="16" y="20" width="109" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4hi-AV-VVX"/>
                                     <constraint firstAttribute="width" constant="109" id="g98-g2-Tun"/>
@@ -30,6 +107,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kP-dR-qMo">
+                                <rect key="frame" x="229" y="20" width="130" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jwN-cB-cMf"/>
                                     <constraint firstAttribute="width" constant="130" id="ooe-9N-2u1"/>
@@ -40,9 +118,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8MA-Mq-tTu">
+                                <rect key="frame" x="0.0" y="49" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="7Yb-5F-jCk">
+                                <rect key="frame" x="140.5" y="20" width="94" height="29"/>
                                 <connections>
                                     <action selector="changeDanmuChannel:" destination="JPP-HJ-6c5" eventType="valueChanged" id="6cb-mt-5s9"/>
                                 </connections>
@@ -68,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEY-uh-a6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-473" y="-493"/>
+            <point key="canvasLocation" x="86" y="-1132"/>
         </scene>
     </scenes>
 </document>

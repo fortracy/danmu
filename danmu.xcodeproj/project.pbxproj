@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		6B31A3C81D9D3EE50013E647 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B31A3C71D9D3EE50013E647 /* main.m */; };
 		6B31A3CB1D9D3EE50013E647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B31A3CA1D9D3EE50013E647 /* AppDelegate.m */; };
-		6B31A3CE1D9D3EE50013E647 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B31A3CD1D9D3EE50013E647 /* ViewController.m */; };
 		6B31A3D11D9D3EE50013E647 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B31A3CF1D9D3EE50013E647 /* Main.storyboard */; };
 		6B31A3D31D9D3EE50013E647 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B31A3D21D9D3EE50013E647 /* Assets.xcassets */; };
 		6B31A3D61D9D3EE50013E647 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B31A3D41D9D3EE50013E647 /* LaunchScreen.storyboard */; };
+		6B664E6E1E67C97F00001589 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B664E6B1E67C97F00001589 /* ExampleViewController.m */; };
+		6B664E6F1E67C97F00001589 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B664E6D1E67C97F00001589 /* ViewController.m */; };
 		6BAA1A9E1DB77BA700C5AC48 /* NSAttributedString+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAA1A9D1DB77BA700C5AC48 /* NSAttributedString+Image.m */; };
 		6BCA03931E19345E0052DBD0 /* GLDanmuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCA038C1E19345E0052DBD0 /* GLDanmuScene.m */; };
 		6BCA03941E19345E0052DBD0 /* GLDanmuSpirite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCA038E1E19345E0052DBD0 /* GLDanmuSpirite.m */; };
@@ -29,13 +30,15 @@
 		6B31A3C71D9D3EE50013E647 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B31A3C91D9D3EE50013E647 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B31A3CA1D9D3EE50013E647 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6B31A3CC1D9D3EE50013E647 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6B31A3CD1D9D3EE50013E647 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6B31A3D01D9D3EE50013E647 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6B31A3D21D9D3EE50013E647 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B31A3D51D9D3EE50013E647 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B31A3D71D9D3EE50013E647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B664E5B1E66E8EB00001589 /* GLDanmuProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuProtocol.h; sourceTree = "<group>"; };
+		6B664E6A1E67C97F00001589 /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		6B664E6B1E67C97F00001589 /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
+		6B664E6C1E67C97F00001589 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6B664E6D1E67C97F00001589 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6BAA1A9C1DB77BA700C5AC48 /* NSAttributedString+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Image.h"; sourceTree = "<group>"; };
 		6BAA1A9D1DB77BA700C5AC48 /* NSAttributedString+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Image.m"; sourceTree = "<group>"; };
 		6BCA038B1E19345E0052DBD0 /* GLDanmuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDanmuScene.h; sourceTree = "<group>"; };
@@ -84,12 +87,11 @@
 		6B31A3C51D9D3EE50013E647 /* danmu */ = {
 			isa = PBXGroup;
 			children = (
+				6B664E691E67C97F00001589 /* Example */,
 				6BCA03971E1934660052DBD0 /* danmuView */,
 				6BCA038A1E19345E0052DBD0 /* GLDanmuView */,
 				6B31A3C91D9D3EE50013E647 /* AppDelegate.h */,
 				6B31A3CA1D9D3EE50013E647 /* AppDelegate.m */,
-				6B31A3CC1D9D3EE50013E647 /* ViewController.h */,
-				6B31A3CD1D9D3EE50013E647 /* ViewController.m */,
 				6B31A3CF1D9D3EE50013E647 /* Main.storyboard */,
 				6B31A3D21D9D3EE50013E647 /* Assets.xcassets */,
 				6B31A3D41D9D3EE50013E647 /* LaunchScreen.storyboard */,
@@ -107,6 +109,17 @@
 				6B31A3C71D9D3EE50013E647 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6B664E691E67C97F00001589 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				6B664E6A1E67C97F00001589 /* ExampleViewController.h */,
+				6B664E6B1E67C97F00001589 /* ExampleViewController.m */,
+				6B664E6C1E67C97F00001589 /* ViewController.h */,
+				6B664E6D1E67C97F00001589 /* ViewController.m */,
+			);
+			path = Example;
 			sourceTree = "<group>";
 		};
 		6BCA038A1E19345E0052DBD0 /* GLDanmuView */ = {
@@ -212,14 +225,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B31A3CE1D9D3EE50013E647 /* ViewController.m in Sources */,
 				6B31A3CB1D9D3EE50013E647 /* AppDelegate.m in Sources */,
 				6B31A3C81D9D3EE50013E647 /* main.m in Sources */,
 				6BCA03931E19345E0052DBD0 /* GLDanmuScene.m in Sources */,
 				6BCA039F1E1934660052DBD0 /* DanmuSpirite.m in Sources */,
 				6BCA03961E19345E0052DBD0 /* GLNode.m in Sources */,
+				6B664E6F1E67C97F00001589 /* ViewController.m in Sources */,
 				6BCA03A11E1934660052DBD0 /* DanmuView.m in Sources */,
 				6BAA1A9E1DB77BA700C5AC48 /* NSAttributedString+Image.m in Sources */,
+				6B664E6E1E67C97F00001589 /* ExampleViewController.m in Sources */,
 				6BCA03941E19345E0052DBD0 /* GLDanmuSpirite.m in Sources */,
 				6BCA03951E19345E0052DBD0 /* GLDanmuView.m in Sources */,
 			);
